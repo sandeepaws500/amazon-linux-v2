@@ -2,7 +2,7 @@
     # Validating amazon-cloudwatch
     - name: check amazon cloudwatch metric config
       stat:
-        path: /opt/aws/amazon-cloudwatch-agent/etc/AmazonCloudWatch-Linux.json
+        path: /opt/aws/AmazonCloudWatch-Linux.json
       register: metric
 
     - debug:

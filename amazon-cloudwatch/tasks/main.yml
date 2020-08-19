@@ -1,7 +1,12 @@
 ---
     # Install and configure Amazon Cloudwatch Agent
     # -------------------
+    - name: create directory
+      file:
+        path: /opt/aws/
+        state: directory
+
     - name: Download and place the Cloudwatch Agent Metrics config
       get_url:
         url: https://s3.amazonaws.com/jcrew.shared.software/Amazon/Cloudwatch/AmazonCloudWatch-Linux.json
-        dest: /opt/aws/amazon-cloudwatch-agent/etc/AmazonCloudWatch-Linux.json
+        dest: /opt/aws/AmazonCloudWatch-Linux.json

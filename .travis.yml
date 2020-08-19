@@ -17,7 +17,10 @@ script:
   # We'll add some commands to test the role here.
   - ansible-playbook playbook.yml --syntax-check
   - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
-    #  # installing 
-  - ansible-playbook playbook.yml --tags ami-Setup
+    #  # installing
+#  - ansible-playbook playbook.yml --tags ami-Setup    
+  - ansible-playbook playbook.yml --tags ami-setup
+  - ansible-playbook playbook.yml --tags amazon-cli
+  - ansible-playbook playbook.yml --tags amazon-cloudwatch
     #  # validating code after installing
-  - ansible-playbook -i tests/inventory tests/test.yml --tags ami-test
+#  - ansible-playbook -i tests/inventory tests/test.yml --tags ami-test
