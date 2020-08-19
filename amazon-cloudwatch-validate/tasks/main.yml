@@ -1,18 +1,5 @@
 ---
     # Validating amazon-cloudwatch
-    - name: check amazon cloudwatch rpm
-      shell: rpm -qa | grep amazon-cloudwatch-agent
-      register: rpm
-      ignore_errors: true
-
-    - debug:
-        msg: "amazon-cloudwatch-agent installed successfully"
-      when: rpm.rc == 0
-    - fail:
-       msg: "failed to installed amazon-cloudwatch-agent"
-      when: rpm.rc != 0
-
-    # Check cloudwatch agent config file
     - name: check amazon cloudwatch metric config
       stat:
         path: /opt/aws/amazon-cloudwatch-agent/etc/AmazonCloudWatch-Linux.json
@@ -24,18 +11,3 @@
     - fail:
        msg: "failed..,cloudwatch-agent metric file not available"
       when: metric.stat.exists == false
-
-    # Check cloudwatch agent running status
-    - name: Check cloudwatch agent status
-      block:
-       - name: Check cloudwatch agent installed or not
-         shell: /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a status
-         ignore_errors: true
-         register: agent
-
-       - debug:
-           msg: "cloudwatch agent installed and running"
-         when: agent.stdout.find("running") != -1
-       - fail:
-           msg: "cloudwatch agent installed but not running"
-         when: agent.stdout.find("stopped") != -1

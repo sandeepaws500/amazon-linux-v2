@@ -1,15 +1,7 @@
 ---
     # Install and configure Amazon Cloudwatch Agent
     # -------------------
-    - name: Install / update Cloudwatch Agent
-      yum:
-        name: https://s3.amazonaws.com/amazoncloudwatch-agent/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm
-        state: latest
-
     - name: Download and place the Cloudwatch Agent Metrics config
       get_url:
         url: https://s3.amazonaws.com/jcrew.shared.software/Amazon/Cloudwatch/AmazonCloudWatch-Linux.json
         dest: /opt/aws/amazon-cloudwatch-agent/etc/AmazonCloudWatch-Linux.json
-
-    - name: Load Cloudwatch Agent config
-      command: /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/etc/AmazonCloudWatch-Linux.json -s

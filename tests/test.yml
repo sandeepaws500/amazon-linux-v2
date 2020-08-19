@@ -13,3 +13,6 @@
     - {role: 'amazon-cloudwatch-validate', 
         tags: ['ami-test']
       }
+
+#    - {role: ../roles/cli}
+#    - {role: ../roles/checkcli}

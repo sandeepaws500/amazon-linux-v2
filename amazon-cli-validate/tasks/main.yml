@@ -7,7 +7,7 @@
         register: ver
 
       - debug:
-          msg: "ansible installed"
+          msg: "awscli installed"
         when: ver.rc == 0
       - debug:
           msg: "awscli is not available"

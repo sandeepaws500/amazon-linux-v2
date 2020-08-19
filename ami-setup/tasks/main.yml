@@ -18,6 +18,8 @@
 
     - name: Create location for J.Crew Sysops files used during userdata
       file:
-        path: /opt/jcrew/sysops/
+        path: /opt/tmp/sysops
         state: directory
         mode: 0744
+    - debug:
+        msg: "directory created"
