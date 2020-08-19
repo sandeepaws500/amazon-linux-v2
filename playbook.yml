@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: true
+  become: yes
+
+  roles:
+    - {role: 'ami-setup', 
+        tags: ['ami-Setup', 'ami-setup']
+      }
+    - {role: 'amazon-cli', 
+        tags: ['ami-Setup', 'amazon-cli']
+      }
+    - {role: 'amazon-cloudwatch', 
+        tags: ['ami-Setup', 'amazon-cloudwatch']
+      }

@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  connection: local
+  become: yes
+  roles:
+  roles:
+    - {role: 'ami-setup-validate', 
+        tags: ['ami-test']
+      }
+    - {role: 'amazon-cli-validate', 
+        tags: ['ami-test']
+      }
+    - {role: 'amazon-cloudwatch-validate', 
+        tags: ['ami-test']
+      }

@@ -1,0 +1,23 @@
+---
+# tasks file for installation
+
+    # Disable service not used by J.Crew
+    - name: Disable firewalld
+      service:
+        name: firewalld
+        state: stopped
+        enabled: false
+      ignore_errors: yes
+
+    - name: Disable iptables
+      service:
+        name: iptables
+        state: stopped
+        enabled: false
+      ignore_errors: yes
+
+    - name: Create location for J.Crew Sysops files used during userdata
+      file:
+        path: /opt/jcrew/sysops/
+        state: directory
+        mode: 0744
