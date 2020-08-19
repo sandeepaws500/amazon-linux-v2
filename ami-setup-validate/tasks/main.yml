@@ -1,0 +1,29 @@
+---
+    # Validating ami-setup role
+    - name: Check firewalld service disabled or not
+      shell: systemctl list-unit-files --type=service | grep firewalld
+      ignore_errors: true
+      register: fir
+  
+    - name: Check firewalld service disabled or not
+      shell: systemctl list-unit-files --type=service | grep iptables
+      ignore_errors: true
+      register: ip
+  
+    - debug:
+        msg: "By default both firewalld and iptables service not available in the {{ ansible_distribution }}"
+      when: fir.rc != 0 and ip.rc !=0
+  
+    - name: check directory exists
+      block:
+      - name: Check directory created or not
+        stat:
+          path: /opt/tmp/sysops
+        register: result
+  
+      - debug:
+          msg: "/opt/tmp/sysops directory gets created from ami-setup role"
+        when: result.stat.exists == true
+      - fail:
+         msg: "failed..,/opt/tmp/sysops directory not created from ami-setup role"
+        when: result.stat.exists == false

@@ -1,0 +1,13 @@
+---
+    # Validating amazon-cloudwatch
+    - name: check amazon cloudwatch metric config
+      stat:
+        path: /opt/aws/AmazonCloudWatch-Linux.json
+      register: metric
+
+    - debug:
+        msg: "Cloudwatch metric config file available"
+      when: metric.stat.exists == true
+    - fail:
+       msg: "failed..,cloudwatch-agent metric file not available"
+      when: metric.stat.exists == false
