@@ -18,6 +18,6 @@ script:
   - ansible-playbook playbook.yml --syntax-check
   - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
     #  # installing 
-    #  - ansible-playbook playbook.yml --tags ami-Setup
+  - ansible-playbook playbook.yml --tags ami-Setup
     #  # validating code after installing
-    #  - ansible-playbook -i tests/inventory tests/test.yml --tags ami-test
+  - ansible-playbook -i tests/inventory tests/test.yml --tags ami-test
